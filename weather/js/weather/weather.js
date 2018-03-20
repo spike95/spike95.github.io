@@ -7,7 +7,7 @@ function Weather() {
 /*初始化注册事件*/
 Weather.prototype.init = function() {
 	var that=this;
-	this.jsonp("http://api.map.baidu.com/api?v=2.0&ak=GGbplNTfcsp0s8gdQRkcsqvpnMjMwlhd&callback=weather.getCity");
+	this.jsonp("https://api.map.baidu.com/api?v=2.0&ak=GGbplNTfcsp0s8gdQRkcsqvpnMjMwlhd&callback=weather.getCity");
 	/*注册hashchange事件*/
 	$(window).on("hashchange", function(e) {
 		that.hashChange(location.hash);
@@ -55,10 +55,10 @@ Weather.prototype.getCity = function() {
 Weather.prototype.createUrl = function() {
 	if(!this.cityname){return}
 	var data = {
-		today: "http://api.k780.com/?app=weather.today&weaid=" + this.cityname + "&appkey=30419&sign=6f493df0e48cd36390c4fa7a6dbd3a99&format=json&jsoncallback=weather.getTodayWeather",
-		future: "http://api.k780.com/?app=weather.future&weaid=" + this.cityname + "&appkey=30419&sign=6f493df0e48cd36390c4fa7a6dbd3a99&format=json&jsoncallback=weather.getFutureWeather",
-		aqi: "http://api.k780.com/?app=weather.pm25&weaid=" + this.cityname + "&appkey=30419&sign=6f493df0e48cd36390c4fa7a6dbd3a99&format=json&jsoncallback=weather.getAqi",
-		lifeindex:"http://api.k780.com/?app=weather.lifeindex&weaid=" + this.cityname + "&appkey=30419&sign=6f493df0e48cd36390c4fa7a6dbd3a99&format=json&jsoncallback=weather.getLifeIndex",
+		today: "https://sapi.k780.com/?app=weather.today&weaid=" + this.cityname + "&appkey=30419&sign=6f493df0e48cd36390c4fa7a6dbd3a99&format=json&jsoncallback=weather.getTodayWeather",
+		future: "https://sapi.k780.com/?app=weather.future&weaid=" + this.cityname + "&appkey=30419&sign=6f493df0e48cd36390c4fa7a6dbd3a99&format=json&jsoncallback=weather.getFutureWeather",
+		aqi: "https://sapi.k780.com/?app=weather.pm25&weaid=" + this.cityname + "&appkey=30419&sign=6f493df0e48cd36390c4fa7a6dbd3a99&format=json&jsoncallback=weather.getAqi",
+		lifeindex:"https://sapi.k780.com/?app=weather.lifeindex&weaid=" + this.cityname + "&appkey=30419&sign=6f493df0e48cd36390c4fa7a6dbd3a99&format=json&jsoncallback=weather.getLifeIndex",
 		//lifeindex:"https://free-api.heweather.com/s6/weather/lifestyle?location=" + this.cityname + "&key=bf6ce2452c6246ffb0bb5f769c519c83&cb=weather.getLifeIndex",
 		whistory:"https://api.caiyunapp.com/v2/A29NiwO5Y3qVbUNS/"+this.position.lng+","+this.position.lat+"/forecast.jsonp?callback=weather.getNext48Hours",
 		//116.30+","+40.05 this.position.lng this.position.lat //如后退返回到第一个城市可能由于hash后面没有city导致无法获得position信息,需要在hash中判断并且再次调用getCity 进行定位
